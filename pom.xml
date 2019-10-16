@@ -1,0 +1,150 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.relative</groupId>
+  <artifactId>core-common-jee</artifactId>
+  <version>1.0</version>
+  <packaging>jar</packaging>
+  <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+   <dependencies>    	
+        <dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>7.0</version>
+			<scope>provided</scope>
+		</dependency>
+        <dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.6</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>commons-discovery</groupId>
+			<artifactId>commons-discovery</artifactId>
+			<version>0.4</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>2.9.4</version>
+        </dependency>
+		
+		<!-- DEPENDENCIAS ENCRIPTACION -->
+		<dependency>
+			<groupId>org.jasypt</groupId>
+			<artifactId>jasypt</artifactId>
+			<version>1.9.2</version>
+		</dependency>
+		<!-- END DEPENDENCIAS ENCRIPTACION -->
+		
+		<dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+			<version>1.5.5</version>
+		</dependency>
+		
+    </dependencies> 
+    
+    
+    <profiles>       
+        <!-- 
+                EJECUCION DE SONAR DESDE MAVEN                 
+                VERSION JDK SOPORTADA: 8
+                CONSTRUIR EL PROYECTO
+                EJECUCION: mvn -Psonar-mvn org.codehaus.mojo:sonar-maven-plugin:2.6:sonar sonar.projectBaseDir debe apuntar al directorio padre de todos los modulos
+        -->
+        <profile>
+            <id>core-common-jee</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+                  
+            <properties>                   
+                <!--<sonar.jdbc.url>jdbc:postgresql://172.22.44.157:5432/sonar2</sonar.jdbc.url>
+                <sonar.jdbc.driver>org.postgresql.Driver</sonar.jdbc.driver>
+                <sonar.jdbc.username>sonarqube</sonar.jdbc.username>
+                <sonar.jdbc.password>postgres</sonar.jdbc.password>-->
+                <sonar.host.url>http://172.16.101.234:9000</sonar.host.url>     
+                <sonar.language>java</sonar.language>
+                <!--sonar.projectBaseDir>${project.parent.basedir}</sonar.projectBaseDir-->
+                <sonar.projectBaseDir>C:\Users\aguaman\workspace\core-common-jee\</sonar.projectBaseDir>
+                <sonar.sources>${sonar.projectBaseDir}/src</sonar.sources>
+                    
+                <sonar.binaries>${sonar.projectBaseDir}/target/classes</sonar.binaries>
+                     
+                <sonar.projectKey>${project.groupId}:${project.artifactId}</sonar.projectKey>
+                <sonar.projectName>${project.artifactId}</sonar.projectName>
+                <sonar.projectVersion>${project.version}</sonar.projectVersion>
+                    
+                <sonar.forceAnalysis>true</sonar.forceAnalysis>
+                <sonar.verbose>false</sonar.verbose>
+            </properties>
+              
+        </profile>
+
+    </profiles>  
+    <build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+				   <artifactId>maven-deploy-plugin</artifactId>
+				   <version>2.8.1</version>
+				   <executions>
+				      <execution>
+				         <id>default-deploy</id>
+				         <phase>deploy</phase>
+				         <goals>
+				            <goal>deploy</goal>
+				         </goals>
+				      </execution>
+				   </executions>
+				</plugin>
+				<!--plugin>
+				   <groupId>org.apache.maven.plugins</groupId>
+				   <artifactId>maven-deploy-plugin</artifactId>
+				   <version>2.8.2</version>
+				   <configuration>
+				      <skip>true</skip>
+				   </configuration>
+				</plugin-->
+				<plugin>
+				   <groupId>org.sonatype.plugins</groupId>
+				   <artifactId>nexus-staging-maven-plugin</artifactId>
+				   <version>1.5.1</version>
+				   <executions>
+				      <execution>
+				         <id>default-deploy</id>
+				         <phase>deploy</phase>
+				         <goals>
+				            <goal>deploy</goal>
+				         </goals>
+				      </execution>
+				   </executions>
+				   <configuration>
+				      <serverId>nexus</serverId>
+				      <nexusUrl>http://192.168.100.182:8880/</nexusUrl>
+				      <skipStaging>true</skipStaging>
+				   </configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+      
+    
+    <distributionManagement>
+		<snapshotRepository>
+			<id>nexus-snapshots</id>
+			<url>http://186.4.199.176:18080/nexus/content/repositories/MAVEN_RELATIVE_SNAPSHOT/</url>
+		</snapshotRepository>
+		<repository>
+			<id>nexus-releases</id>
+			<url>http://186.4.199.176:18080/nexus/content/repositories/MAVEN_RELATIVE/</url>
+		</repository>
+	</distributionManagement>
+    
+</project>
