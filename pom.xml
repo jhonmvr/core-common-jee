@@ -1,8 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.relative</groupId>
+  <groupId>ec.com.def</groupId>
   <artifactId>core-common-jee</artifactId>
-  <version>1.0</version>
+  <version>1.0.0</version>
   <packaging>jar</packaging>
   <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -65,14 +65,14 @@
             </activation>
                   
             <properties>                   
-                <!--<sonar.jdbc.url>jdbc:postgresql://172.22.44.157:5432/sonar2</sonar.jdbc.url>
+                <!--<sonar.jdbc.url>jdbc:postgresql://10.22.44.157:5432/sonar2</sonar.jdbc.url>
                 <sonar.jdbc.driver>org.postgresql.Driver</sonar.jdbc.driver>
                 <sonar.jdbc.username>sonarqube</sonar.jdbc.username>
                 <sonar.jdbc.password>postgres</sonar.jdbc.password>-->
-                <sonar.host.url>http://172.16.101.234:9000</sonar.host.url>     
+                <sonar.host.url>http://10.16.101.234:9000</sonar.host.url>     
                 <sonar.language>java</sonar.language>
                 <!--sonar.projectBaseDir>${project.parent.basedir}</sonar.projectBaseDir-->
-                <sonar.projectBaseDir>C:\Users\aguaman\workspace\core-common-jee\</sonar.projectBaseDir>
+                <sonar.projectBaseDir>C:\Users\asd\workspace\core-common-jee\</sonar.projectBaseDir>
                 <sonar.sources>${sonar.projectBaseDir}/src</sonar.sources>
                     
                 <sonar.binaries>${sonar.projectBaseDir}/target/classes</sonar.binaries>
@@ -127,7 +127,7 @@
 				   </executions>
 				   <configuration>
 				      <serverId>nexus</serverId>
-				      <nexusUrl>http://192.168.100.182:8880/</nexusUrl>
+				      <nexusUrl>http://10.16.101.194:8081/</nexusUrl>
 				      <skipStaging>true</skipStaging>
 				   </configuration>
 				</plugin>
@@ -139,11 +139,11 @@
     <distributionManagement>
 		<snapshotRepository>
 			<id>nexus-snapshots</id>
-			<url>http://186.4.199.176:18080/nexus/content/repositories/MAVEN_RELATIVE_SNAPSHOT/</url>
+			<url>http://10.16.101.194:8081/repository/MAVEN_SNAPSHOT/</url>
 		</snapshotRepository>
 		<repository>
 			<id>nexus-releases</id>
-			<url>http://186.4.199.176:18080/nexus/content/repositories/MAVEN_RELATIVE/</url>
+			<url>http://10.16.101.194:8081/repository/MAVEN_RELEASE/</url>
 		</repository>
 	</distributionManagement>
     
